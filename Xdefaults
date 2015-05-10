@@ -1,0 +1,54 @@
+Xft.dpi:    133
+!==============
+!XTerm*background: #222222
+XTerm*background: #000000
+XTerm*foreground: white
+XTerm*font: fixed
+XTerm*boldFont: fixed
+
+URxvt*background: #222222
+URxvt*foreground: white
+URxvt*depth: 32
+URxvt*scrollBar: false
+URxvt*font: xft:monospace:size=7
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/dwb
+URxvt.matcher.button: 1
+
+!===================
+!===================
+!===================
+*foreground: #DDCCBB
+
+! Brown BG
+!*background: #30251D
+
+! Grey BG
+*background: #151515
+
+
+!black
+*color0:     #393939
+*color8:     #777777
+!red
+*color1:     #B80011
+*color9:     #FF1823
+!green
+*color2:     #60DA11
+*color10:    #7FFF2B
+!yellow
+*color3:     #F5B915
+*color11:    #F7D325
+!blue
+*color4:     #1CA1DB
+*color12:    #00AFDA
+!magenta
+*color5:     #C4004F
+*color13:    #FD267C
+!cyan
+*color6:     #26BBC2
+*color14:    #46F7FF
+!white
+*color7:     #E7E8E9
+*color15:    #F3F3F4

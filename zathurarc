@@ -1,0 +1,38 @@
+set adjust-open width
+set page-cache-size 30
+#set recolor true
+#set recolor-keephue true
+
+set font "monospace normal 6"
+
+set default-fg #FFFFFF
+
+# next/prev navigation
+# j/K
+#map j navigate next  
+#map k navigate previous
+#map [fullscreen] j navigate next  
+#map [fullscreen] k navigate previous
+
+# enter/backspace
+map <Space> navigate next  
+map [fullscreen] <Space> navigate next
+map <Return> navigate next  
+map [fullscreen] <Return> navigate next
+map <BackSpace> navigate previous  
+map [fullscreen] <BackSpace> navigate previous
+
+# left/right arrows
+map <Right> navigate next  
+map [fullscreen] <Right> navigate next
+map <Down> navigate next  
+map [fullscreen] <Down> navigate next
+map <Left> navigate previous  
+map [fullscreen] <Left> navigate previous
+map <Up> navigate previous  
+map [fullscreen] <Up> navigate previous
+
+map <C-q> quit
+map [fullscreen] <C-q> quit
+map <C-f> toggle_fullscreen
+map [fullscreen] <C-f> toggle_fullscreen

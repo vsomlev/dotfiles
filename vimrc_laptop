@@ -1,0 +1,215 @@
+set incsearch 
+set ignorecase smartcase
+set hidden
+set noshowcmd
+set cursorline
+set autoindent copyindent
+set shiftwidth=4 tabstop=4 expandtab
+set scrolloff=5
+set guioptions=
+set laststatus=2
+set synmaxcol=600
+set wildmenu wildmode=longest:full,full
+set backspace=indent,eol,start
+set number relativenumber
+set formatoptions=roqlj
+set nolist listchars=tab:>-,eol:¬,trail:·,precedes:◀,extends:▶
+set fillchars+=vert:\ 
+set showbreak=+
+set splitright
+set autoread autowrite
+set complete=.,w,b,u,t
+set completeopt=longest,menu,preview
+set mouse=a
+syntax on
+
+set backupdir=/home/uibxn/.vim/vimswap,.
+set directory=/home/uibxn/.vim/vimswap,.
+set undofile undodir=/home/vesso/.vim/vimundo
+
+set guifont=Monospace\ 7
+"set guifont=Oxygen\ Mono\ 8
+:colorscheme nucolors
+:hi NonText guifg=bg
+:hi Comment gui=italic
+
+" KEYBINDINGS {{{1
+:let mapleader="\<Space>"
+map ; :
+nnoremap s <esc>:wa<CR>
+inoremap <C-s> <ESC>:wa<CR>
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap 0 g0
+noremap $ g$
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap < <gv
+vnoremap > >gv
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+noremap H ^
+noremap L $
+nnoremap K <nop>
+vnoremap L g_
+nnoremap U <C-r>
+" move selection up/down (like in Eclipse)
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+" highlight last inserted/changed text
+nmap gV `[v`]
+noremap gV `[v`]
+" im feeling lucky (for spelling suggestions)
+nnoremap z1 1z=
+nnoremap zs z=
+" fix the previous misspelled word
+function! FixSpell()
+	let b:myview = winsaveview()
+	norm [s1z=
+	call winrestview(b:myview)
+endfunction
+nnoremap <A-f> :call FixSpell()<cr>
+inoremap <A-f> <esc>:call FixSpell()<cr>a
+" temporary remove highlighting
+nnoremap <space><space> :noh<CR>
+
+" insert mode movement
+inoremap <C-e> <C-o>A
+inoremap <C-a> <C-o>I
+
+" use TAB as escape, use Alt+TAB for tabulator in insert mode
+inoremap <Tab> <Esc>
+noremap <Tab> <Esc>
+inoremap <A-Tab> <Tab>
+
+" window/buffer navigation & management
+map <C-j> :bn<CR>
+map <C-k> :bp<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-l> :wincmd l<CR>
+nmap <silent> <A-w> :wincmd w<CR>
+nmap <silent> <A-v> :wincmd v<CR>
+nmap <silent> <A-s> :wincmd s<CR>
+nmap <silent> <A-q> :wincmd q<CR>
+" tab navigation
+nnoremap th :tabfirst<cr>
+nnoremap tj :tabnext<cr>
+nnoremap tk :tabprev<cr>
+nnoremap tl :tablast<cr>
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+
+" temporary remove highlighting
+nnoremap <space><space> :noh<CR>
+" clear search when entering insert mode
+autocmd InsertEnter * :let @/=""
+
+" built-in diffing: 'dt' on two buffers, then 'do' to turn off
+nnoremap <Leader>dt :diffthis<CR>
+nnoremap <Leader>do :windo diffoff<CR>
+
+" PLUGIN SETTINGS & BINDINGS {{{1
+filetype off 
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'Raimondi/delimitMate'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-vinegar'
+call plug#end()
+filetype plugin indent on
+
+" NerdTree {{{2
+map <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeMouseMode = 3
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['\.$', '\.\.$', '.*pyc', '.*git']
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeHijackNetrw = 0
+
+" CtrlP keybindings {{{2
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>f :CtrlP<CR>
+" don't forget ctags -R .
+nnoremap <Leader>g :CtrlPTag<CR>
+let g:ctrlp_switch_buffer = '0'
+
+" LIGHTLINE {{{2
+let g:lightline = { 'active':{}, 'inactive':{} }
+let g:lightline.active.left = [[ 'mode', 'paste' ], [ 'filename', 'readonly', 'modified' ]]
+let g:lightline.active.right = [['lineinfo'], ['percent'], [ 'filetype' ]]
+let g:lightline.inactive.left = [[ 'filename' , 'modified'], ['ctrlpmark']]
+let g:lightline.inactive.right = [[ 'filetype' ]]
+
+" VIM SNEAK {{{2
+let g:sneak#s_next = 1
+map t <Plug>Sneak_s
+map T <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+
+" DELIMITMATE {{{2
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 0
+
+" plugins end }}} 1 
+
+" ABBREVIATIONS {{{1
+" function to remove the space after abbreviations
+function! EatChar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunction
+function! MakeSpacelessIabbrev(from, to)
+    execute "iabbrev <silent> ".a:from." ".a:to."<C-R>=EatChar('\\s')<CR>"
+endfunction
+:command -nargs=* Myabbr :call MakeSpacelessIabbrev(<f-args>)
+:Myabbr clog console.log();<left><left>
+
+" the abbreviations themselves
+" n/a
+
+" CONCEAL {{{1
+hi Conceal gui=italic guifg=cyan guibg=NONE
+set conceallevel=1
+setlocal concealcursor=
+
+" FUNCTIONS, MACROS, AUTOCMD {{{1
+function! EnableRNU()
+    let ignored_buffs = ['nerdtree', 'tagbar', 'help', 'qf']
+    if index(ignored_buffs, &ft)<0 
+        set relativenumber
+    endif
+endfunction
+autocmd WinEnter * call EnableRNU()
+autocmd WinLeave * set norelativenumber
+
+" Stuff about list chars
+autocmd BufWritePre *py :retab!<cr>
+
+let g:all_list_chars = 0
+function! ListCharsToggle()
+	if g:all_list_chars
+		set listchars=tab:\ \ ,eol:¬,trail:·,precedes:◀,extends:▶
+		let g:all_list_chars = 0
+	else
+		set listchars=tab:▶\ ,eol:¬,trail:·,precedes:◀,extends:▶
+		let g:all_list_chars = 1
+	endif
+endfunction
+
+" TOhtml fun
+let g:html_dynamic_folds=1
+" let g:html_no_foldcolumn=1
+" let g:html_hover_unfold=1

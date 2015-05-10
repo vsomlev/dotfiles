@@ -1,0 +1,41 @@
+##### General aliases
+alias rfc='term_rfc'
+alias cl='clear'
+alias l='ls'
+alias cd+='cd && clear'
+alias ..='cd ..'
+alias q='exit'
+alias :q='exit'
+alias :e='vim'
+alias psa='ps -A'
+alias lost='export PS1="\[\033[01;32m\]>: "'
+alias dush='du -sh'
+alias dfh='df -h'
+alias x='startx'
+alias psaux='ps aux | grep '
+##### File managers
+alias rx='rox .'
+alias rxx='rox . && exit'
+##### pacman aliases
+alias pm='sudo pacman'
+alias ss='pacman -Ss'
+alias yss='pacaur -Ss'
+alias s='sudo pacman -S'
+alias ys='pacaur -S'
+alias syu='pacaur -Syu'
+alias rorphans='sudo pacman -Rns $(pacman -Qtdq)'
+##### mounting
+alias mount='sudo /bin/mount'
+alias umount='sudo /bin/umount'
+
+##### git
+alias gl='git log'
+alias gs='git status'
+alias gg='git gui'
+alias ga='git add'
+alias gd='git diff'
+alias gpom='git push -u origin master'
+
+##### dev
+alias py2='python2'
+alias pyserve='python2 -m SimpleHTTPServer'

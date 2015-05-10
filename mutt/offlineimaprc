@@ -1,0 +1,35 @@
+# Note: requires ../nametrans.py
+
+[general]
+ui = ttyui
+accounts = Gmail
+maxsyncaccounts = 2
+pythonfile = ~/.mutt/nametrans.py
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.Mail/Gmail
+nametrans = nt_local
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = v.somlev@gmail.com
+realdelete = no
+maxconnections = 3
+nametrans = nt_remote
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = exclude([ '[Gmail]/All Mail', 'Whatever' ])
+
+# vim: ft=cfg

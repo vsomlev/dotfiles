@@ -1,0 +1,4 @@
+#!/bin/bash
+
+notify-send -t 1000 "Starting $1..."
+$2
